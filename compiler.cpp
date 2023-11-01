@@ -19,8 +19,9 @@ Compiler::~Compiler(){
 
 void Compiler::parser(){
     lineNo++;
-    nextChar();
-    nextToken();
+    //nextChar();
+    string token = nextToken();
+    listingFile << token << endl;
 }
 
 char Compiler::nextChar(){
@@ -29,20 +30,25 @@ char Compiler::nextChar(){
         ch = END_OF_FILE;
         return ch;
     }
-    while (ch == '\n' || ch == ' ') {
-        listingFile << ch;
-        (ch == '\n') ? lineNo += 1 : lineNo;
-
-        ch = sourceFile.get();
-        if (sourceFile.eof()){
-            ch = END_OF_FILE;
-            return ch;
-        }
-    }
     return ch;
 }
 
 string Compiler::nextToken(){
-    listingFile << "ermmm";
-    return "test";
+    listingFile << "ermmm" << endl;
+    token = "";
+    char ch = nextChar();
+    while (token == ""){
+        while (!isWhitespace(ch)){
+            token += ch;
+            ch = nextChar();
+        }
+    }
+    return token;
+}
+
+bool Compiler::isWhitespace(char token){
+    if (token == ' ' || token == '\n' || token == '\t' || token == END_OF_FILE){
+        return true;
+    }
+    return false;
 }

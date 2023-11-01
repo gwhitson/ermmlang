@@ -25,8 +25,11 @@ class Compiler {
         ~Compiler();
 
         void parser();
+        
         char nextChar();
         string nextToken();
+
+        bool isWhitespace(char token);
         void processError();
     private:
         ifstream sourceFile;
