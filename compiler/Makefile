@@ -1,4 +1,4 @@
-BASE_DIR = /home/gavin/ermmlang
+BASE_DIR = /home/gavin/ermmlang/compiler
 LINK_DIRS = -L$(BASE_DIR)
 INCLUDE_DIRS = -I$(BASE_DIR)
 LFLAGS = -lm

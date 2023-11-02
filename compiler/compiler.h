@@ -30,7 +30,10 @@ class Compiler {
         char nextChar();
         string nextToken();
 
-        bool isWhitespace(char token);
+        bool isWhitespace(char x);
+        bool isKeyword(string x);
+        bool isEOF(string x);
+        bool isEOF(char x);
         void processError();
     private:
         ifstream sourceFile;

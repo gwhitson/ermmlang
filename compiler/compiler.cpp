@@ -32,7 +32,6 @@ char Compiler::nextChar(){
         ch = END_OF_FILE;
         return ch;
     }
-    //listingFile << " -- char: " << ch << endl;
     return ch;
 }
 
@@ -45,15 +44,29 @@ string Compiler::nextToken(){
                 token += x;
                 x = nextChar();
             }
-        } else if (x == END_OF_FILE) {
+        } else if (isEOF((x))) {
             token = S_END_OF_FILE;
         }
     }
     return token;
 }
 
-bool Compiler::isWhitespace(char token){
-    if (token == ' ' || token == '\n' || token == '\t' || token == END_OF_FILE){
+bool Compiler::isWhitespace(char x){
+    if (x == ' ' || x == '\n' || x == '\t' || x == END_OF_FILE){
+        return true;
+    }
+    return false;
+}
+
+bool Compiler::isEOF(string x){
+    if (x == S_END_OF_FILE){
+        return true;
+    }
+    return false;
+}
+
+bool Compiler::isEOF(char x){
+    if (x == END_OF_FILE){
         return true;
     }
     return false;
