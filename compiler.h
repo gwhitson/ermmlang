@@ -7,6 +7,7 @@
 using namespace std;
 
 const char END_OF_FILE = '$';
+const string S_END_OF_FILE = "$";
 
 enum storeTypes {INTEGER, BOOLEAN, PROG_NAME, CHAR};
 enum modes {VARIABLE, CONSTANT};

@@ -1,6 +1,6 @@
 // starting to build a compiler, we will see how far I take this
 
-#include <compiler.h>
+#include "compiler.h"
 #include <cctype>
 
 //Constructor
@@ -19,9 +19,11 @@ Compiler::~Compiler(){
 
 void Compiler::parser(){
     lineNo++;
-    //nextChar();
-    string token = nextToken();
-    listingFile << token << endl;
+    string ltoken = nextToken();
+    while (ltoken != S_END_OF_FILE){
+        listingFile <<  /*" - token: " << */ltoken << endl;
+        ltoken = nextToken();
+    }
 }
 
 char Compiler::nextChar(){
@@ -30,17 +32,21 @@ char Compiler::nextChar(){
         ch = END_OF_FILE;
         return ch;
     }
+    //listingFile << " -- char: " << ch << endl;
     return ch;
 }
 
 string Compiler::nextToken(){
-    listingFile << "ermmm" << endl;
     token = "";
-    char ch = nextChar();
     while (token == ""){
-        while (!isWhitespace(ch)){
-            token += ch;
-            ch = nextChar();
+        char x = nextChar();
+        if (!isWhitespace(x)){
+            while (!isWhitespace(x)){
+                token += x;
+                x = nextChar();
+            }
+        } else if (x == END_OF_FILE) {
+            token = S_END_OF_FILE;
         }
     }
     return token;
