@@ -21,7 +21,7 @@ void Compiler::parser(){
     lineNo++;
     string ltoken = nextToken();
     while (ltoken != S_END_OF_FILE){
-        listingFile <<  /*" - token: " << */ltoken << endl;
+        listingFile <<  /*" - token: " << */ltoken << "\n";
         ltoken = nextToken();
     }
 }
@@ -53,6 +53,14 @@ string Compiler::nextToken(){
 
 bool Compiler::isWhitespace(char x){
     if (x == ' ' || x == '\n' || x == '\t' || x == END_OF_FILE){
+        return true;
+    }
+    return false;
+}
+
+
+bool Compiler::isKeyword(const string x){
+    if ( std::find(operations.begin(), operations.end(), x) != operations.end() ){
         return true;
     }
     return false;
